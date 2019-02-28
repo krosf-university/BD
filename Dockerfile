@@ -1,7 +1,2 @@
-FROM mariadb:latest as builder
-RUN ["sed", "-i", "s/exec \"$@\"/echo \"not running $@\"/", "/usr/local/bin/docker-entrypoint.sh"]
-ENV MYSQL_ROOT_PASSWORD=root
-COPY setup.sql /docker-entrypoint-initdb.d/setup.sql
-RUN ["/usr/local/bin/docker-entrypoint.sh", "mysqld", "--datadir", "/initialized-db", "--aria-log-dir-path", "/initialized-db"]
 FROM mariadb:latest
-COPY --from=builder /initialized-db /var/lib/mysql
+ADD setup.sql /docker-entrypoint-initdb.d
