@@ -115,7 +115,7 @@ WHERE ART_COL = 'rojo'
    OR ART_COL = 'verde';
 
 /* Ejercicio 23 */
-SELECT SUM(VNT_CANT) AS CANTIDAD
+SELECT *
 FROM ventas
 WHERE VNT_FCH = '910109';
 
@@ -157,9 +157,9 @@ WHERE ART_PESO <= 100
 ORDER BY ART_PESO ASC, ART_PC DESC;
 
 /* Ejercicio 31 */
-SELECT *
-FROM articulos
-WHERE ART_NUM IN (SELECT VNT_ART FROM ventas ORDER BY VNT_CANT ASC);
+SELECT VNT_ART
+FROM ventas
+ORDER BY VNT_CANT ASC;
 
 /* Ejercicio 32 */
 SELECT *
@@ -167,7 +167,7 @@ FROM ventas
 ORDER BY VNT_CANT ASC;
 
 /* Ejercicio 33 */
-SELECT *
+SELECT ART_NOM
 FROM articulos
 WHERE ART_PRV = 2;
 
