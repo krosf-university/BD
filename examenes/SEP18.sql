@@ -48,7 +48,7 @@ CREATE TABLE Maillot (
 CREATE TABLE Lleva (
     ciclista INT(11) NOT NULL,
     maillot INT(11) NOT NULL,
-    etapaINT(11) NOT NULL,
+    etapa INT(11) NOT NULL,
     PRIMARY KEY (ciclista, maillot, etapa),
     FOREIGN KEY (ciclista) REFERENCES Ciclista (dorsal),
     FOREIGN KEY (maillot) REFERENCES Maillot (codigo),
