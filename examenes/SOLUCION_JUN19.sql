@@ -58,3 +58,49 @@ AND (ar.text LIKE '%machismo%'
     )
 GROUP BY au.id
 ORDER BY au.surname, au.name;
+
+/** SOLUCION CON JOINS **/
+
+SELECT a.*
+FROM articles a JOIN authors a2 on a.Authors_id = a2.id
+JOIN revisions r on a.id = r.Articles_id
+WHERE a2.name = 'Maria'
+AND a2.surname = 'Perez Montes'
+GROUP BY a.id
+HAVING COUNT(a.id) >=2;
+
+
+SELECT t.name, COUNT(a.id) AS Articulos, COUNT(DISTINCT a2.id) AS Autores
+FROM articles a JOIN authors a2 on a.Authors_id = a2.id
+JOIN topics t on a.Topics_id = t.id
+GROUP BY t.name;
+
+SELECT a.title, a.date, t.name, a2.name
+FROM articles a JOIN topics t on a.Topics_id = t.id
+JOIN authors a2 on a.Authors_id = a2.id
+LEFT JOIN revisions r on a.id = r.Articles_id
+WHERE t.name IN ('Videogames', 'Smartphones', 'Gamers')
+GROUP BY a.id
+HAVING COUNT(r.Authors_id) < 1;
+
+
+SELECT au.surname, au.name, COUNT(a.id) as Articulos
+FROM authors au JOIN articles a on au.id = a.Authors_id
+JOIN topics t on a.Topics_id = t.id
+WHERE t.name = 'Videogames'
+GROUP BY au.surname, au.name
+HAVING Articulos >=3 ;
+
+SELECT au.id, au.surname, au.name, au.email
+FROM authors au JOIN articles a on au.id = a.Authors_id
+JOIN topics t on a.Topics_id = t.id
+WHERE t.name = 'Videogames'
+AND (
+            a.title LIKE '%machismo%'
+         OR a.title LIKE '%sexismo%'
+         OR a.title LIKE '%violencia de género%'
+         OR a.text LIKE '%machismo%'
+         OR a.text LIKE '%sexismo%'
+         OR a.text LIKE '%violencia de género%')
+GROUP BY au.id
+ORDER BY au.surname, au.surname;
