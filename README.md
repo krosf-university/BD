@@ -1,13 +1,14 @@
-# Practicas BBDD
+# BBDD 2020
 
-## Contenido
+## Run
 
-Imagen de mariadb precargada con las bbdd de las practicas.
+```sh
+docker-compose up -d
+```
 
-## Comando
+## Credentials
 
-`docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root --name bbdd krosf/bbdd`
-
-## Recomendaciones
-
-Usar [DataGrip](https://www.jetbrains.com/datagrip/)
+- **User**
+  - root
+- **Password**
+  - BD2020
